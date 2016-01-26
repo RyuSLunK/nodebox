@@ -46,7 +46,7 @@ app.post('/getCityImage',cors(), function(request, response){
 	console.log(JSON.stringify(paramz));
 	urlz = 'https://' + optionz.hostname + optionz.path + '?' + param(paramz);
 	var response2 = response;
-	var askGoogle = https.get(urlz, function(res) {
+	var askGoogle = https.request(urlz, function(res) {
 		result.statusz = res.statusCode;
 		result.headersz = res.headers;
 		var response3 = response2;
