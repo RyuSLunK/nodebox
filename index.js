@@ -74,7 +74,7 @@ app.post('/getCityImage',cors(), function(request, response){
 		
 	});
 	console.log("AFTER REQUEST");
-	req.end();
+	askGoogle.end();
 	/*
 	var req = https.request(optionz,function(res){
 		console.log("statusCode: ", res.statusCode);
