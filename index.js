@@ -23,16 +23,17 @@ app.post('/getCityImage', function(request, response){
 	var optionz = {
 		hostname: 'maps.googleapis.com',
 		path: '/maps/api/place/nearbysearch/json',
-		method: 'GET'
+		'GET'
 	};
-	paramz = {
-		key: 'AIzaSyD0vMwi4l6rl-8KK-ZtmObt_LCi_S8SzIA',
+	paramz = {	
+		radius: request.body.radius,
 		location: request.body.location,
 		keyword: request.body.keyword,
-		type: request.body.type
+		type: request.body.type,
+		key: 'AIzaSyD0vMwi4l6rl-8KK-ZtmObt_LCi_S8SzIA'
 	};
 	var result = {};
-	var askGoogle = https.get(optionz, function(res) {
+	var askGoogle = https.request(optionz, function(res) {
 		console.log('statusCode: ', res.statusCode);
 		console.log('headers: ', res.headers);
 		result.status = res.statusCode;
@@ -52,9 +53,10 @@ app.post('/getCityImage', function(request, response){
 		
 		console.log(s);
 		result.end = s;
-		
+		response.send()
 	});
-	response.send()
+	askGoogle.write(paramz);
+	askGoogle.end();
 	/*
 	var req = https.request(optionz,function(res){
 		console.log("statusCode: ", res.statusCode);
