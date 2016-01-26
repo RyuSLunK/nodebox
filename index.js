@@ -41,6 +41,7 @@ app.post('/getCityImage',cors(), function(request, response){
 	console.log(JSON.stringify(paramz));
 	urlz = 'https://' + optionz.hostname + optionz.path + '?' + param(paramz);
 	console.log("URL IS: " + urlz);
+	var response = response;
 	var askGoogle = https.get(urlz, function(res) {
 		console.log('statusCode: ', res.statusCode);
 		console.log('headers: ', res.headers);
@@ -50,19 +51,23 @@ app.post('/getCityImage',cors(), function(request, response){
 		res.on('data', function(d){
 			process.stdout.write(d);
 			result.data = d;
+			response.send(result)
 		});
 		
 	}).on('error', function(e){
 		
 		console.error(e);
 		result.error = e;
+		response.send(result)
 	
 	}).on('end', function(s){
 		
 		console.log(s);
 		result.end = s;
+		response.send(result)
+		
 	});
-	response.send(result)
+	
 	/*
 	var req = https.request(optionz,function(res){
 		console.log("statusCode: ", res.statusCode);
