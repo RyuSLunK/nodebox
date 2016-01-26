@@ -41,8 +41,8 @@ app.post('/getCityImage',cors(), function(request, response){
 	paramz = {	
 		radius: request.body.radius,
 		location: request.body.location,
-		keyword: request.body.keyword,
-		type: request.body.type,
+		input: request.body.keyword,
+		types: request.body.type,
 		key: 'AIzaSyD0vMwi4l6rl-8KK-ZtmObt_LCi_S8SzIA'
 	};
 	var result = {};
