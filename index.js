@@ -69,7 +69,7 @@ app.post('/getCityImage',cors(), function(request, response){
 		
 		console.log(s);
 		result.end = s;
-		response.send()
+		response.send(result)
 	});
 	/*
 	var req = https.request(optionz,function(res){
