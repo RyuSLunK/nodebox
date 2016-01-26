@@ -17,7 +17,8 @@
     "jquery": "~2.1.x",
 	"mandrill-api":">=1.0.2",
 	"mongodb": "~2.0",
-	"crypto":">=0.0.3"
+	"crypto":">=0.0.3",
+	"node-jquery-param":">=0.0.2"
   },
   "engines": {
     "node": "0.12.7"

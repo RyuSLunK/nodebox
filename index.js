@@ -6,6 +6,7 @@ var express = require('express')
 	, querystring = require('querystring')
 	, fs = require('fs')
 	, bodyParser = require('body-parser')
+	, param = require('node-jquery-param')
 	, app = express();
 app.use(bodyParser.json());
 app.set('port', (process.env.PORT || 5000));
@@ -33,7 +34,8 @@ app.post('/getCityImage', function(request, response){
 		key: 'AIzaSyD0vMwi4l6rl-8KK-ZtmObt_LCi_S8SzIA'
 	};
 	var result = {};
-	var askGoogle = https.request(optionz, function(res) {
+	urlz = 'https://' + optionz.hostname + optionz.path + '?' + param(paramz);
+	var askGoogle = https.get(urlz, function(res) {
 		console.log('statusCode: ', res.statusCode);
 		console.log('headers: ', res.headers);
 		result.status = res.statusCode;
@@ -55,8 +57,6 @@ app.post('/getCityImage', function(request, response){
 		result.end = s;
 		response.send()
 	});
-	askGoogle.write(JSON.stringify(paramz));
-	askGoogle.end();
 	/*
 	var req = https.request(optionz,function(res){
 		console.log("statusCode: ", res.statusCode);
