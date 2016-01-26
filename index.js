@@ -51,22 +51,24 @@ app.post('/getCityImage',cors(), function(request, response){
 		res.on('data', function(d){
 			process.stdout.write(d);
 			result.data += d.toString();
+			console.log("DATA WRITE");
 		});
 		
 	}).on('error', function(e){
 		
 		console.error(e);
 		result.error = e;
+	
 		response.send(result)
 	
 	}).on('end', function(s){
-		
+		console.log("ENDED");
 		console.log(s);
 		result.end = s;
-		response.send(result)
+		
 		
 	});
-	
+	console.log("AFTER REQUEST");
 	/*
 	var req = https.request(optionz,function(res){
 		console.log("statusCode: ", res.statusCode);
