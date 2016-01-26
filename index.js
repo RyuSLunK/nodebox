@@ -55,13 +55,14 @@ app.post('/getCityImage',cors(), function(request, response){
 			//process.stdout.write(d);
 			result.data = d.toString();
 			console.log("DATA WRITE");
-			console.log(JSON.stringify(result.data));
+			//console.log(JSON.stringify(result.data));
 			res.resume();
 			//callbacker(response,result);
 		});
 	   res.on('end',function(end){
 		   console.log("RESPONSE ENDED");
-		   
+		   console.log(result.data);
+		   response.send(result)
 	   });
 	}).on('error', function(e){
 		
@@ -75,7 +76,7 @@ app.post('/getCityImage',cors(), function(request, response){
 	askGoogle.end(function(){
 		console.log("INSIDE AFTER");
 		console.log(result);
-		response.send(result)
+		//response.send(result)
 		
 	});
 	/*
