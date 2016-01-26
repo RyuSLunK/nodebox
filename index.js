@@ -40,6 +40,7 @@ app.post('/getCityImage',cors(), function(request, response){
 		location: request.body.location,
 		input: request.body.keyword,
 		types: request.body.type,
+		limit: 2,
 		key: 'AIzaSyD0vMwi4l6rl-8KK-ZtmObt_LCi_S8SzIA'
 	};
 	var result = {};
@@ -52,7 +53,7 @@ app.post('/getCityImage',cors(), function(request, response){
 		var response3 = response2;
 		res.on('data', function(d){
 			
-			process.stdout.write(d);
+			//process.stdout.write(d);
 			result.data = d.toString();
 			console.log("DATA WRITE");
 			//console.log(JSON.stringify(result));
@@ -67,12 +68,6 @@ app.post('/getCityImage',cors(), function(request, response){
 	
 		response.send(result)
 	
-	}).on('end', function(s){
-		console.log("ENDED");
-		console.log(s);
-		result.end = s;
-		////response.send(result);
-		
 	});
 	console.log("AFTER REQUEST");
 	askGoogle.end(function(){
