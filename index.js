@@ -20,15 +20,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 /*this is for CORS*/
-var corsOptionsDelegate = function(req, callback){
-  var corsOptions;
-  if(whitelist.indexOf(req.header('Origin')) !== -1){
-    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
-  }else{
-    corsOptions = { origin: false }; // disable CORS for this request
-  }
-  callback(null, corsOptions); // callback expects two parameters: error and options
-};
+app.options('*',cors());
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
@@ -69,8 +61,8 @@ app.post('/getCityImage',cors(), function(request, response){
 		
 		console.log(s);
 		result.end = s;
-		response.send(result)
 	});
+	response.send(result)
 	/*
 	var req = https.request(optionz,function(res){
 		console.log("statusCode: ", res.statusCode);
