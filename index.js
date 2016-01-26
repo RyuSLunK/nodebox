@@ -62,6 +62,7 @@ app.post('/getCityImage',cors(), function(request, response){
 	   res.on('end',function(end){
 		   console.log("RESPONSE ENDED");
 		   console.log(result.data);
+		   result.json = JSON.parse(result.data);
 		   response.send(result)
 	   });
 	}).on('error', function(e){
