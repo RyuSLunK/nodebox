@@ -35,23 +35,23 @@ app.post('/getCityImage', function(request, response){
 		type: request.body.type
 	};
 	var result = {};
-	var askGoogle = https.get(optionz, (res) => {
+	var askGoogle = https.get(optionz, function(res) {
 		console.log('statusCode: ', res.statusCode);
 		console.log('headers: ', res.headers);
 		result.status = res.statusCode;
 		result.headers = res.headers;
 		
-		res.on('data', (d) => {
+		res.on('data', function(d){
 			process.stdout.write(d);
 			result.data = d;
 		});
 		
-	}).on('error', (e) => {
+	}).on('error', function(e){
 		
 		console.error(e);
 		result.error = e;
 	
-	}).on('end', (s) => {
+	}).on('end', function(s){
 		
 		console.log(s);
 		result.end = s;
