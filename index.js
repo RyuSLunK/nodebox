@@ -34,7 +34,8 @@ app.post('/getCityImage', function(request, response){
 		key: 'AIzaSyD0vMwi4l6rl-8KK-ZtmObt_LCi_S8SzIA'
 	};
 	var result = {};
-	urlz = 'https://' + optionz.hostname + optionz.path + '?' + param(paramz);
+	console.log(JSON.stringify(paramz));
+	//urlz = 'https://' + optionz.hostname + optionz.path + '?' + param(paramz);
 	console.log("URL IS: " + urlz);
 	var askGoogle = https.get(urlz, function(res) {
 		console.log('statusCode: ', res.statusCode);
