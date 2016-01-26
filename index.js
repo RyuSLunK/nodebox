@@ -2,6 +2,7 @@ var express = require('express')
 	, $ = require('jquery')
 	, $ajax = require('ajax')
 	, https = require('https')
+	, cors = require('cors')
 	, http = require('http')
 	, querystring = require('querystring')
 	, fs = require('fs')
@@ -9,6 +10,8 @@ var express = require('express')
 	, param = require('node-jquery-param')
 	, app = express();
 app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true}));
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
@@ -16,11 +19,20 @@ app.use(express.static(__dirname + '/public'));
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-
+/*this is for CORS*/
+var corsOptionsDelegate = function(req, callback){
+  var corsOptions;
+  if(whitelist.indexOf(req.header('Origin')) !== -1){
+    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+  }else{
+    corsOptions = { origin: false }; // disable CORS for this request
+  }
+  callback(null, corsOptions); // callback expects two parameters: error and options
+};
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
-app.post('/getCityImage', function(request, response){
+app.post('/getCityImage',cors(), function(request, response){
 	var optionz = {
 		hostname: 'maps.googleapis.com',
 		path: '/maps/api/place/nearbysearch/json',

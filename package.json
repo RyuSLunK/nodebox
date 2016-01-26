@@ -18,7 +18,8 @@
 	"mandrill-api":">=1.0.2",
 	"mongodb": "~2.0",
 	"crypto":">=0.0.3",
-	"node-jquery-param":">=0.0.2"
+	"node-jquery-param":">=0.0.2",
+	"cors": "~2.7.x"
   },
   "engines": {
     "node": "0.12.7"
