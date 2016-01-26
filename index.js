@@ -41,17 +41,19 @@ app.post('/getCityImage',cors(), function(request, response){
 	console.log(JSON.stringify(paramz));
 	urlz = 'https://' + optionz.hostname + optionz.path + '?' + param(paramz);
 	console.log("URL IS: " + urlz);
-	var response = response;
+	var response2 = response;
 	var askGoogle = https.get(urlz, function(res) {
 		console.log('statusCode: ', res.statusCode);
 		console.log('headers: ', res.headers);
 		result.status = res.statusCode;
 		result.headers = res.headers;
-		
+		var response3 = response2;
 		res.on('data', function(d){
-			process.stdout.write(d);
-			result.data += d.toString();
+			//process.stdout.write(d);
+			result.data = d.toString();
 			console.log("DATA WRITE");
+			console.log(JSON.stringify(result));
+			response3.send(result);
 		});
 		
 	}).on('error', function(e){
