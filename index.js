@@ -65,12 +65,14 @@ app.post('/getCityImage',cors(), function(request, response){
 		
 		console.error(e);
 		result.error = e;
-	
+		
 		response.send(result)
 	
 	});
 	console.log("AFTER REQUEST");
 	askGoogle.end(function(){
+		console.log("INSIDE AFTER");
+		console.log(result);
 		response.send(result)
 		
 	});
