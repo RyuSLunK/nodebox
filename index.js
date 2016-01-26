@@ -50,8 +50,7 @@ app.post('/getCityImage',cors(), function(request, response){
 		
 		res.on('data', function(d){
 			process.stdout.write(d);
-			result.data = d;
-			response.send(result)
+			result.data += d.toString();
 		});
 		
 	}).on('error', function(e){
@@ -64,7 +63,7 @@ app.post('/getCityImage',cors(), function(request, response){
 		
 		console.log(s);
 		result.end = s;
-		
+		response.send(result)
 		
 	});
 	
