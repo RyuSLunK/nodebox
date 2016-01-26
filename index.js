@@ -53,7 +53,7 @@ app.post('/getCityImage',cors(), function(request, response){
 		res.on('data', function(d){
 			
 			//process.stdout.write(d);
-			result.data = d.toString();
+			result.data += d.toString();
 			console.log("DATA WRITE");
 			//console.log(JSON.stringify(result.data));
 			res.resume();
