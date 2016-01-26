@@ -1,12 +1,9 @@
 var express = require('express')
-	, cors = require('cors')
-	, curl = require('curlrequest')
 	, $ = require('jquery')
 	, $ajax = require('ajax')
 	, https = require('https')
 	, http = require('http')
 	, querystring = require('querystring')
-	, zendesk = require('node-zendesk')
 	, fs = require('fs')
 	, bodyParser = require('body-parser')
 	, app = express();
