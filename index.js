@@ -56,6 +56,7 @@ app.post('/getCityImage',cors(), function(request, response){
 			result.data = d.toString();
 			console.log("DATA WRITE");
 			console.log(JSON.stringify(result));
+			res.resume();
 			//callbacker(response,result);
 		});
 		
