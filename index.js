@@ -25,6 +25,11 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 app.post('/getCityImage',cors(), function(request, response){
+	function callbacker(resty,data){
+		resty.send(data);
+		
+		
+	}
 	var optionz = {
 		hostname: 'maps.googleapis.com',
 		path: '/maps/api/place/nearbysearch/json',
@@ -40,20 +45,17 @@ app.post('/getCityImage',cors(), function(request, response){
 	var result = {};
 	console.log(JSON.stringify(paramz));
 	urlz = 'https://' + optionz.hostname + optionz.path + '?' + param(paramz);
-	console.log("URL IS: " + urlz);
 	var response2 = response;
 	var askGoogle = https.get(urlz, function(res) {
-		console.log('statusCode: ', res.statusCode);
-		console.log('headers: ', res.headers);
-		result.status = res.statusCode;
-		result.headers = res.headers;
+		result.statusz = res.statusCode;
+		result.headersz = res.headers;
 		var response3 = response2;
 		res.on('data', function(d){
 			//process.stdout.write(d);
 			result.data = d.toString();
 			console.log("DATA WRITE");
 			console.log(JSON.stringify(result));
-			response3.send(result);
+			callbacker(response,result);
 		});
 		
 	}).on('error', function(e){
