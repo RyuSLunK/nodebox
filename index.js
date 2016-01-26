@@ -23,7 +23,7 @@ app.post('/getCityImage', function(request, response){
 	var optionz = {
 		hostname: 'maps.googleapis.com',
 		path: '/maps/api/place/nearbysearch/json',
-		'GET'
+		method: 'GET'
 	};
 	paramz = {	
 		radius: request.body.radius,
