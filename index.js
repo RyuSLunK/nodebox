@@ -59,7 +59,10 @@ app.post('/getCityImage',cors(), function(request, response){
 			res.resume();
 			//callbacker(response,result);
 		});
-		
+	   res.on('end',function(end){
+		   console.log("RESPONSE ENDED");
+		   
+	   });
 	}).on('error', function(e){
 		
 		console.error(e);
