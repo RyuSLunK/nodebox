@@ -12,8 +12,8 @@ var express = require('express')
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true}));
-//app.set('port', (process.env.PORT || 5000));
-app.set('port', (process.env.PORT || 443));
+app.set('port', (process.env.PORT || 5000));
+//app.set('port', (process.env.PORT || 443));
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
