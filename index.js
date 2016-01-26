@@ -40,7 +40,6 @@ app.post('/getCityImage',cors(), function(request, response){
 		location: request.body.location,
 		input: request.body.keyword,
 		types: request.body.type,
-		limit: 2,
 		key: 'AIzaSyD0vMwi4l6rl-8KK-ZtmObt_LCi_S8SzIA'
 	};
 	var result = {};
