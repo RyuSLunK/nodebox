@@ -55,7 +55,7 @@ app.post('/getCityImage', function(request, response){
 		result.end = s;
 		response.send()
 	});
-	askGoogle.write(paramz);
+	askGoogle.write(JSON.stringify(paramz));
 	askGoogle.end();
 	/*
 	var req = https.request(optionz,function(res){
