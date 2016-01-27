@@ -9,6 +9,12 @@ var express = require('express')
 	, bodyParser = require('body-parser')
 	, param = require('node-jquery-param')
 	, app = express();
+var Flickr = require("flickrapi"),
+	flickrOptions = {
+		api_key: "55e57731da1d654b70f11a2b12ba3ba9",
+		secret: "f6daac98bf41bb52"
+	};
+	
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -23,6 +29,26 @@ app.set('view engine', 'ejs');
 app.options('*',cors());
 app.get('/', function(request, response) {
   response.render('pages/index');
+});
+app.post('flickr',cors(), function(request, response){
+	Flickr.tokenOnly(flickrOptions, function(error, flickr){
+		search = {
+			api_key: flickrOptions.api_key,
+			tags: request.body.city + "," + request.body.state + ",landscape",
+			tag_mode: 'all',
+			privacy_filters: 1,
+			media: 'photos',
+			geo_context: 2,
+			lat: request.body.latitude,
+			lon: request.body.longitude,
+			radius: 5,
+			radius_units: "mi"
+		};
+		flickr.photos.search(search, function(err, result){
+			console.log(result);
+			response.send(result)
+		});
+	});
 });
 app.post('/getCityImage',cors(), function(request, response){
 	function callbacker(resty,data){
@@ -50,6 +76,7 @@ app.post('/getCityImage',cors(), function(request, response){
 		result.statusz = res.statusCode;
 		result.headersz = res.headers;
 		var response3 = response2;
+		result.data = "";
 		res.on('data', function(d){
 			
 			//process.stdout.write(d);
@@ -62,7 +89,9 @@ app.post('/getCityImage',cors(), function(request, response){
 	   res.on('end',function(end){
 		   console.log("RESPONSE ENDED");
 		   console.log(result.data);
-		   response.send(result)
+		   result.json = JSON.parse(result.data);
+		  // response.send(result)
+		  secondAsk(result.json);
 	   });
 	}).on('error', function(e){
 		
@@ -79,6 +108,12 @@ app.post('/getCityImage',cors(), function(request, response){
 		//response.send(result)
 		
 	});
+	function secondAsk(json){
+		var place_id = json.results[1].place_id;
+		var reference = json.results[1].place_id;
+		
+		
+	}
 	/*
 	var req = https.request(optionz,function(res){
 		console.log("statusCode: ", res.statusCode);
