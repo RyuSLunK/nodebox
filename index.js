@@ -34,7 +34,7 @@ app.post('/flickr',cors(), function(request, response){
 	Flickr.tokenOnly(flickrOptions, function(error, flickr){
 		search = {
 			api_key: flickrOptions.api_key,
-			tags: request.body.city + "," + request.body.state + ",landscape",
+			tags: request.body.tags,
 			tag_mode: 'all',
 			privacy_filters: 1,
 			media: 'photos',
