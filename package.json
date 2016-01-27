@@ -20,7 +20,7 @@
 	"crypto":">=0.0.3",
 	"node-jquery-param":">=0.0.2",
 	"cors": "~2.7.x",
-	"node-flickrapi": ">=0.3.36"
+	"flickrapi": ">=0.3.36"
   },
   "engines": {
     "node": "0.12.7"
