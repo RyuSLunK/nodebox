@@ -46,6 +46,7 @@ app.post('/flickr',cors(), function(request, response){
 		};
 		flickr.photos.search(search, function(err, result){
 			console.log(result);
+			console.log(err);
 			response.send(result)
 		});
 	});
