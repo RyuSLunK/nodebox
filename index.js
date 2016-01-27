@@ -37,12 +37,12 @@ app.post('/flickr',cors(), function(request, response){
 			tags: request.body.tags,
 			tag_mode: request.body.tag_mode,
 			privacy_filters: 1,
-			media: 'photos',
-			geo_context: 2,
+			media: 'photos'
+			/*geo_context: 2,
 			lat: request.body.latitude,
 			lon: request.body.longitude,
 			radius: request.body.radius,
-			radius_units: "mi"
+			radius_units: "mi"*/
 		};
 		flickr.photos.search(search, function(err, result){
 			console.log(result);
