@@ -35,13 +35,13 @@ app.post('/flickr',cors(), function(request, response){
 		search = {
 			api_key: flickrOptions.api_key,
 			tags: request.body.tags,
-			tag_mode: 'all',
+			tag_mode: request.body.tag_mode,
 			privacy_filters: 1,
 			media: 'photos',
 			geo_context: 2,
 			lat: request.body.latitude,
 			lon: request.body.longitude,
-			radius: 10,
+			radius: request.body.radius,
 			radius_units: "mi"
 		};
 		flickr.photos.search(search, function(err, result){
