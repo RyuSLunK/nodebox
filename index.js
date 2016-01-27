@@ -30,7 +30,7 @@ app.options('*',cors());
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
-app.post('flickr',cors(), function(request, response){
+app.post('/flickr',cors(), function(request, response){
 	Flickr.tokenOnly(flickrOptions, function(error, flickr){
 		search = {
 			api_key: flickrOptions.api_key,
