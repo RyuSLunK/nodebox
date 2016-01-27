@@ -41,7 +41,7 @@ app.post('/flickr',cors(), function(request, response){
 			geo_context: 2,
 			lat: request.body.latitude,
 			lon: request.body.longitude,
-			radius: 5,
+			radius: 25,
 			radius_units: "mi"
 		};
 		flickr.photos.search(search, function(err, result){
